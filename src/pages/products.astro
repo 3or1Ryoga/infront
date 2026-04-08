@@ -1,7 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { SITE } from '../data/site';
-import products from '../data/products.json';
+import productsFlat from '../data/products.json';
+
+// カテゴリ順を定義してグループ化
+const categoryOrder = ['研削材料', 'セラミックス原材料', '工業用副資材'];
+
+type Product = typeof productsFlat[number];
+
+const grouped = categoryOrder.map((cat) => ({
+  category: cat,
+  items: productsFlat.filter((p: Product) => p.category === cat),
+}));
 ---
 
 <Layout title="製品一覧" description={`${SITE.name}が取り扱う研磨材・工業材料の製品一覧です。`}>
@@ -15,44 +25,56 @@ import products from '../data/products.json';
   </section>
 
   <!-- カテゴリ別製品 -->
-  <div class="bg-off-white">
-    {products.map((cat, idx) => (
-      <section
-        id={cat.id}
-        class:list={['py-20', idx % 2 === 0 ? 'bg-off-white' : 'bg-white']}
-      >
-        <div class="max-w-6xl mx-auto px-6">
-          <!-- カテゴリ見出し -->
-          <div class="flex items-center gap-6 mb-12">
-            <div class="w-1 h-12 bg-primary shrink-0"></div>
-            <div>
-              <p class="text-primary text-xs tracking-[0.3em] uppercase mb-1">
-                {String(idx + 1).padStart(2, '0')}
-              </p>
-              <h2 class="font-serif text-2xl md:text-3xl text-dark">{cat.category}</h2>
-            </div>
-          </div>
-
-          <!-- 製品カード -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cat.items.map((item) => (
-              <div class="bg-white p-6 border border-dark/10 hover:border-primary transition-colors duration-200">
-                <h3 class="font-serif text-dark text-base font-semibold mb-3 leading-snug">
-                  {item.name}
-                </h3>
-                <p class="text-dark/65 text-sm leading-relaxed mb-4">
-                  {item.description}
-                </p>
-                <div class="pt-3 border-t border-dark/10">
-                  <span class="text-xs text-primary font-mono">{item.spec}</span>
-                </div>
-              </div>
-            ))}
+  {grouped.map((group, idx) => (
+    <section
+      id={group.category}
+      class:list={['py-20', idx % 2 === 0 ? 'bg-off-white' : 'bg-white']}
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <!-- カテゴリ見出し -->
+        <div class="flex items-center gap-6 mb-12">
+          <div class="w-1 h-12 bg-primary shrink-0"></div>
+          <div>
+            <p class="text-primary text-xs tracking-[0.3em] uppercase mb-1">
+              {String(idx + 1).padStart(2, '0')}
+            </p>
+            <h2 class="font-serif text-2xl md:text-3xl text-dark">{group.category}</h2>
           </div>
         </div>
-      </section>
-    ))}
-  </div>
+
+        <!-- 製品カード -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {group.items.map((item) => (
+            <div id={item.id} class="bg-white p-6 border border-dark/10 hover:border-primary transition-colors duration-200">
+              <p class="text-primary text-xs font-mono mb-2">{item.code}</p>
+              <h3 class="font-serif text-dark text-base font-semibold mb-3 leading-snug">
+                {item.name}
+              </h3>
+              <p class="text-dark/65 text-sm leading-relaxed mb-4">
+                {item.description}
+              </p>
+              <!-- スペック -->
+              <div class="pt-3 border-t border-dark/10 space-y-1">
+                {item.specs.granularity && (
+                  <p class="text-xs text-dark/50">
+                    <span class="text-dark/40">粒度：</span>{item.specs.granularity}
+                  </p>
+                )}
+                {item.specs.bulk_density && (
+                  <p class="text-xs text-dark/50">
+                    <span class="text-dark/40">嵩比重：</span>{item.specs.bulk_density}
+                  </p>
+                )}
+                {item.specs.notes && (
+                  <p class="text-xs text-primary/80">{item.specs.notes}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
 
   <!-- お問い合わせ誘導 -->
   <section class="py-20 bg-dark">
@@ -65,7 +87,7 @@ import products from '../data/products.json';
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
-          href={`tel:${SITE.tel}`}
+          href={SITE.telHref}
           class="bg-primary hover:bg-primary-dark text-white text-sm tracking-wider px-10 py-4 transition-colors"
         >
           電話: {SITE.tel}

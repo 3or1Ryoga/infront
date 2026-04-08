@@ -1,7 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { SITE } from '../data/site';
-import products from '../data/products.json';
+import productsFlat from '../data/products.json';
+
+// カテゴリごとに先頭1件を取得してトップページ用カードに使用
+const categoryOrder = ['研削材料', 'セラミックス原材料', '工業用副資材'];
+const categorySummary = categoryOrder.map((cat) => ({
+  category: cat,
+  item: productsFlat.find((p) => p.category === cat)!,
+}));
 ---
 
 <Layout>
@@ -101,18 +108,18 @@ import products from '../data/products.json';
         <h2 class="font-serif text-3xl md:text-4xl text-dark">取り扱い製品</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((cat) => (
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {categorySummary.map(({ category, item }) => (
           <a
             href="/products"
             class="group bg-off-white hover:bg-dark transition-colors duration-300 p-8 flex flex-col gap-4"
           >
             <div class="w-10 h-0.5 bg-primary group-hover:w-16 transition-all duration-300"></div>
             <h3 class="font-serif text-dark group-hover:text-off-white text-lg transition-colors duration-300">
-              {cat.category}
+              {category}
             </h3>
             <p class="text-dark/60 group-hover:text-off-white/60 text-sm leading-relaxed transition-colors duration-300">
-              {cat.items[0].description.slice(0, 40)}…
+              {item.description.slice(0, 40)}…
             </p>
             <span class="mt-auto text-primary text-xs tracking-wider group-hover:text-primary transition-colors">
               詳細を見る →

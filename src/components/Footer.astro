@@ -8,55 +8,51 @@ const nav = [
 ];
 ---
 
-<footer class="bg-dark text-off-white/70">
+<footer class="bg-dark text-white">
   <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
 
-      <!-- 会社情報 -->
-      <div class="md:col-span-2">
-        <p class="font-serif text-off-white text-lg font-semibold mb-1">{SITE.name}</p>
-        <p class="text-xs tracking-widest uppercase text-off-white/40 mb-6">{SITE.nameEn}</p>
-        <dl class="space-y-2 text-sm">
-          <div class="flex gap-4">
-            <dt class="w-12 shrink-0 text-off-white/40">所在地</dt>
-            <dd>{SITE.addressFull}</dd>
-          </div>
-          <div class="flex gap-4">
-            <dt class="w-12 shrink-0 text-off-white/40">電話</dt>
-            <dd>
-              <a href={`tel:${SITE.tel}`} class="hover:text-off-white transition-colors">
-                {SITE.tel}
-              </a>
-            </dd>
-          </div>
-          <div class="flex gap-4">
-            <dt class="w-12 shrink-0 text-off-white/40">メール</dt>
-            <dd>
-              <a href={`mailto:${SITE.email}`} class="hover:text-off-white transition-colors">
-                {SITE.email}
-              </a>
-            </dd>
-          </div>
-        </dl>
-      </div>
+    <!-- 上段 -->
+    <div class="flex flex-col md:flex-row justify-between gap-12">
 
-      <!-- ナビゲーション -->
+      <!-- 左: 社名 + ナビリンク -->
       <div>
-        <p class="text-xs tracking-widest uppercase text-off-white/40 mb-6">Navigation</p>
+        <p class="font-serif text-lg font-semibold mb-1">{SITE.name}</p>
+        <p class="text-white/40 text-xs tracking-widest uppercase mb-6">{SITE.nameEn}</p>
         <nav class="flex flex-col gap-3">
           {nav.map(({ label, href }) => (
-            <a
-              href={href}
-              class="text-sm hover:text-off-white transition-colors"
-            >
+            <a href={href} class="text-sm text-white/70 hover:text-white transition-colors">
               {label}
             </a>
           ))}
         </nav>
       </div>
+
+      <!-- 右: TEL + メール -->
+      <div class="flex flex-col gap-4">
+        <a
+          href={SITE.telHref}
+          class="flex flex-col gap-1 group"
+        >
+          <span class="text-white/40 text-xs tracking-widest uppercase">Phone</span>
+          <span class="font-serif text-2xl tracking-wider group-hover:text-primary transition-colors">
+            {SITE.tel}
+          </span>
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="flex flex-col gap-1 group"
+        >
+          <span class="text-white/40 text-xs tracking-widest uppercase">Email</span>
+          <span class="text-sm text-white/70 group-hover:text-white transition-colors">
+            {SITE.email}
+          </span>
+        </a>
+        <p class="text-sm text-white/60 mt-2">{SITE.address}</p>
+      </div>
     </div>
 
-    <div class="mt-12 pt-6 border-t border-off-white/10 text-xs text-off-white/30">
+    <!-- 下段: コピーライト -->
+    <div class="mt-12 pt-6 border-t border-white/10 text-center text-xs text-white/30">
       {SITE.copyright}
     </div>
   </div>

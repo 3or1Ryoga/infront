@@ -5,8 +5,8 @@ import { SITE } from '../data/site';
 const companyInfo = [
   { label: '商号',         value: SITE.name },
   { label: '英語表記',     value: SITE.nameEn },
-  { label: '事業内容',     value: SITE.industry },
-  { label: '所在地',       value: SITE.addressFull },
+  { label: '事業内容',     value: '研磨剤・工業材料の製造・販売' },
+  { label: '所在地',       value: SITE.address },
   { label: '電話番号',     value: SITE.tel },
   { label: 'メールアドレス', value: SITE.email },
 ];
@@ -74,7 +74,7 @@ const history = [
       <h2 class="font-serif text-2xl text-dark mb-10">所在地</h2>
       <div class="bg-white p-8 border-l-4 border-primary">
         <p class="font-serif text-dark text-lg font-semibold mb-2">{SITE.name}</p>
-        <p class="text-dark/70 mb-6">{SITE.addressFull}</p>
+        <p class="text-dark/70 mb-6">{SITE.address}</p>
         <div class="flex flex-col sm:flex-row gap-4">
           <a
             href={`tel:${SITE.tel}`}

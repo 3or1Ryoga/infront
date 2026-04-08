@@ -1,0 +1,13 @@
+---
+interface Props {
+  en: string;
+  ja: string;
+}
+
+const { en, ja } = Astro.props;
+---
+
+<div>
+  <p class="text-sm tracking-widest text-primary uppercase">{en}</p>
+  <h2 class="font-serif text-3xl md:text-4xl mt-2">{ja}</h2>
+</div>

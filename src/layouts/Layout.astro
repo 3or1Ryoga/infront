@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = `${SITE.name}は${SITE.industry}を行う専門商社です。`,
+  description = `${SITE.name}は研磨剤・工業材料の製造・販売を行う専門商社です。`,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE.name}` : SITE.name;
@@ -26,6 +26,10 @@ const pageTitle = title ? `${title} | ${SITE.name}` : SITE.name;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <meta property="og:title"       content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:locale"      content="ja_JP" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />

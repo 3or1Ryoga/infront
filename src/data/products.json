@@ -1,71 +1,227 @@
 [
   {
-    "id": "abrasive-materials",
-    "category": "研磨材",
-    "items": [
-      {
-        "name": "褐色電融アルミナ（A材）",
-        "description": "酸化アルミニウムを主成分とした汎用研磨材。研削砥石・研磨布紙・ブラスト材として幅広く使用されます。",
-        "spec": "粒度：#8〜#1200"
-      },
-      {
-        "name": "白色電融アルミナ（WA材）",
-        "description": "高純度アルミナを原料とした精密研磨材。鏡面仕上げ・精密部品の研削に最適です。",
-        "spec": "純度：99.5%以上"
-      },
-      {
-        "name": "炭化ケイ素（C材・GC材）",
-        "description": "硬度が高く、非鉄金属・セラミックス・石材の研磨に適した研磨材です。",
-        "spec": "粒度：#16〜#2000"
-      }
-    ]
+    "id": "GR-001",
+    "name": "褐色電融アルミナ研磨材",
+    "code": "BFA",
+    "category": "研削材料",
+    "description": "酸化アルミニウムを主成分とした汎用研磨材です。高い硬度と靭性を持ち、研削砥石・研磨布紙・ブラスト材として幅広い用途に対応します。コストパフォーマンスに優れ、鉄鋼・鋳鉄の研削に最適です。",
+    "specs": {
+      "granularity": "F16〜F220",
+      "bulk_density": "1.85",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "94.5％" },
+        { "label": "SiO₂",  "value": "1.96％" },
+        { "label": "TiO₂",  "value": "2.36％" },
+        { "label": "Fe₂O₃", "value": "0.35％" }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
   },
   {
-    "id": "blast-materials",
-    "category": "ブラスト材",
-    "items": [
-      {
-        "name": "ガーネット",
-        "description": "天然ザクロ石を原料とした環境対応型ブラスト材。鉄鋼・アルミ・ステンレスの表面処理に使用されます。",
-        "spec": "粒度：G16〜G80"
-      },
-      {
-        "name": "スチールグリット",
-        "description": "高硬度の鋼製ブラスト材。強力な打撃力で厚い錆・塗膜の除去に優れています。",
-        "spec": "硬度：HRC55〜65"
-      }
-    ]
+    "id": "GR-002",
+    "name": "白色電融アルミナ研磨材",
+    "code": "WFA",
+    "category": "研削材料",
+    "description": "高純度アルミナを原料とした精密研磨材です。褐色品より純度が高く、焼き付きが少ないため精密部品や硬質鋼の鏡面仕上げに適しています。熱影響を抑えたい用途に最適です。",
+    "specs": {
+      "granularity": "F16〜F1200",
+      "bulk_density": "1.78",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "99.2％" },
+        { "label": "SiO₂",  "value": "0.18％" },
+        { "label": "Fe₂O₃", "value": "0.05％" },
+        { "label": "Na₂O",  "value": "0.35％" }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
   },
   {
-    "id": "refractory-materials",
-    "category": "耐火・工業材料",
-    "items": [
-      {
-        "name": "アルミナセメント",
-        "description": "高温環境下での接着・目地材として使用される不定形耐火物原料。製鉄・窯業分野に対応します。",
-        "spec": "最高使用温度：1650℃"
-      },
-      {
-        "name": "ムライト粉",
-        "description": "耐熱・耐食性に優れたセラミックス原料。断熱材・電子部品・耐火物の成形原料に使用されます。",
-        "spec": "Al₂O₃含有率：72%"
-      }
-    ]
+    "id": "GR-003",
+    "name": "炭化ケイ素研磨材（グリーン）",
+    "code": "GC",
+    "category": "研削材料",
+    "description": "純度の高い炭化ケイ素を使用した高硬度研磨材です。非鉄金属・セラミックス・石材・ガラスなど非金属材料の研削・研磨に優れた性能を発揮します。熱伝導性が高く、高速研削にも対応可能です。",
+    "specs": {
+      "granularity": "F16〜F1200",
+      "bulk_density": "1.52",
+      "analysis": [
+        { "label": "SiC",   "value": "99.0％以上" },
+        { "label": "Fe₂O₃", "value": "0.05％以下" },
+        { "label": "SiO₂",  "value": "0.30％以下" }
+      ],
+      "notes": "グリーン品はブラック品より高純度です。"
+    },
+    "image": "/images/products/placeholder.jpg"
   },
   {
-    "id": "thermal-spray",
-    "category": "溶射材料",
-    "items": [
-      {
-        "name": "アルミナ溶射粉末",
-        "description": "耐摩耗・電気絶縁性に優れた溶射皮膜を形成。機械部品・電子部品の表面改質に使用されます。",
-        "spec": "粒度分布：10〜45μm"
-      },
-      {
-        "name": "ジルコニア溶射粉末",
-        "description": "遮熱コーティング（TBC）として航空・エネルギー分野で採用される高機能溶射材料です。",
-        "spec": "安定化剤：Y₂O₃ 8wt%"
-      }
-    ]
+    "id": "GR-004",
+    "name": "ガーネット研磨材",
+    "code": "GNT",
+    "category": "研削材料",
+    "description": "天然ザクロ石を原料とした環境対応型研磨材です。ウォータージェット切断・ブラスト処理に使用され、切断面が滑らかで粉塵が少ないのが特長です。鉄鋼・アルミニウム・ステンレスに対応します。",
+    "specs": {
+      "granularity": "G16〜G80",
+      "bulk_density": "2.20",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "20.5％" },
+        { "label": "SiO₂",  "value": "36.8％" },
+        { "label": "Fe₂O₃", "value": "31.2％" },
+        { "label": "MgO",   "value": "8.1％"  },
+        { "label": "CaO",   "value": "2.4％"  }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "GR-005",
+    "name": "スチールグリット",
+    "code": "SGT",
+    "category": "研削材料",
+    "description": "高炭素鋼を原料とした鋼製ブラスト材です。高い硬度と耐久性を持ち、繰り返し使用が可能です。重防食塗装前処理・鋳物の砂落としなど、強力な打撃力が必要な用途に使用されます。",
+    "specs": {
+      "granularity": "G10〜G40",
+      "bulk_density": "4.20",
+      "analysis": [
+        { "label": "C",     "value": "0.85〜1.20％" },
+        { "label": "Si",    "value": "0.40〜1.20％" },
+        { "label": "Mn",    "value": "0.60〜1.20％" }
+      ],
+      "notes": "硬度はHRC55〜65。"
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "CR-001",
+    "name": "電融アルミナ粉（充填用）",
+    "code": "FCA",
+    "category": "セラミックス原材料",
+    "description": "不定形耐火物・プラスチック充填材として使用される電融アルミナ微粉です。粒度分布が均一で嵩密度が高く、充填効率に優れています。耐熱・耐食性が求められる部位の原料に最適です。",
+    "specs": {
+      "granularity": "0〜1mm / 1〜3mm",
+      "bulk_density": "1.92",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "98.5％" },
+        { "label": "SiO₂",  "value": "0.40％" },
+        { "label": "Fe₂O₃", "value": "0.20％" },
+        { "label": "TiO₂",  "value": "0.60％" }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "CR-002",
+    "name": "ムライト粉",
+    "code": "MUL",
+    "category": "セラミックス原材料",
+    "description": "アルミナとシリカを原料とした複合酸化物セラミックスです。熱膨張係数が低く、耐スポーリング性に優れるため、断熱材・窯道具・電子部品基板の原料として幅広く利用されています。",
+    "specs": {
+      "granularity": "0〜3mm / 粉末",
+      "bulk_density": "1.65",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "72.0％" },
+        { "label": "SiO₂",  "value": "27.5％" },
+        { "label": "Fe₂O₃", "value": "0.15％" },
+        { "label": "TiO₂",  "value": "0.10％" }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "CR-003",
+    "name": "ジルコニア粉末",
+    "code": "ZRO",
+    "category": "セラミックス原材料",
+    "description": "高純度の安定化ジルコニアを原料とした機能性セラミックス粉末です。遮熱コーティング（TBC）・固体酸化物形燃料電池（SOFC）・精密研磨用メディアの原料として使用されます。",
+    "specs": {
+      "granularity": "粉末（D50：2〜5μm）",
+      "bulk_density": null,
+      "analysis": [
+        { "label": "ZrO₂",  "value": "91.8％" },
+        { "label": "Y₂O₃",  "value": "8.0％"  },
+        { "label": "SiO₂",  "value": "0.05％" },
+        { "label": "Fe₂O₃", "value": "0.02％" }
+      ],
+      "notes": "Y₂O₃安定化品（8YSZ）。"
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "CR-004",
+    "name": "クロミア粉末",
+    "code": "CRO",
+    "category": "セラミックス原材料",
+    "description": "高純度酸化クロムを原料とした顔料・研磨材原料です。耐食性・耐摩耗性の溶射皮膜原料、緑系顔料として使用されます。粒度・純度ともにカスタマイズ対応が可能です。",
+    "specs": {
+      "granularity": "粉末（D50：1〜10μm）",
+      "bulk_density": null,
+      "analysis": [
+        { "label": "Cr₂O₃", "value": "99.0％以上" },
+        { "label": "SiO₂",  "value": "0.05％以下" },
+        { "label": "Fe₂O₃", "value": "0.05％以下" }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "IM-001",
+    "name": "製鋼用充填砂",
+    "code": "FSN",
+    "category": "工業用副資材",
+    "description": "転炉・電気炉のタップホール充填に使用される専用砂です。流動性が高く、安定した出鋼操業を支援します。粒度・耐火度の管理が徹底されており、安定した充填性能を提供します。",
+    "specs": {
+      "granularity": "0.5〜2.0mm",
+      "bulk_density": "1.70",
+      "analysis": [
+        { "label": "SiO₂",  "value": "95.0％以上" },
+        { "label": "Al₂O₃", "value": "1.5％以下"  },
+        { "label": "Fe₂O₃", "value": "0.5％以下"  }
+      ],
+      "notes": "耐火度SK34以上。"
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "IM-002",
+    "name": "スラグ改質剤",
+    "code": "SMF",
+    "category": "工業用副資材",
+    "description": "製鋼スラグの流動性・塩基度調整を目的とした副資材です。CaO・MgO系の原料を最適配合しており、脱硫・脱リン効率の向上に貢献します。ご要望に応じた配合比での供給が可能です。",
+    "specs": {
+      "granularity": "10〜50mm",
+      "bulk_density": null,
+      "analysis": [
+        { "label": "CaO",   "value": "55.0〜60.0％" },
+        { "label": "MgO",   "value": "25.0〜30.0％" },
+        { "label": "SiO₂",  "value": "3.0％以下"    },
+        { "label": "Fe₂O₃", "value": "2.0％以下"    }
+      ],
+      "notes": null
+    },
+    "image": "/images/products/placeholder.jpg"
+  },
+  {
+    "id": "IM-003",
+    "name": "アルミナ質不定形耐火物",
+    "code": "AFC",
+    "category": "工業用副資材",
+    "description": "高アルミナ骨材を主原料とした流し込み・吹き付け施工用の不定形耐火物です。炉壁・タンディッシュ・取鍋のライニング補修に使用されます。施工性・耐剥落性に優れています。",
+    "specs": {
+      "granularity": null,
+      "bulk_density": "2.85",
+      "analysis": [
+        { "label": "Al₂O₃", "value": "85.0％" },
+        { "label": "SiO₂",  "value": "8.0％"  },
+        { "label": "CaO",   "value": "5.5％"  },
+        { "label": "Fe₂O₃", "value": "0.5％"  }
+      ],
+      "notes": "最高使用温度：1600℃。"
+    },
+    "image": "/images/products/placeholder.jpg"
   }
 ]

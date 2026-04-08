@@ -1,0 +1,26 @@
+---
+interface Props {
+  text:      string;
+  href:      string;
+  external?: boolean;
+}
+
+const { text, href, external = false } = Astro.props;
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class="group relative inline-flex items-center justify-center overflow-hidden bg-primary hover:bg-dark transition-colors duration-300 px-8 py-3 min-w-[200px]"
+>
+  <!-- 右側の斜め墨色ブロック -->
+  <span
+    class="absolute inset-0 bg-dark [clip-path:polygon(78%_0,100%_0,100%_100%,70%_100%)] group-hover:opacity-0 transition-opacity duration-300"
+    aria-hidden="true"
+  ></span>
+  <!-- テキスト -->
+  <span class="relative z-10 text-white font-semibold text-sm tracking-wider">
+    {text}
+  </span>
+</a>
