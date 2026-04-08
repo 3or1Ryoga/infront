@@ -1,103 +1,136 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import SlantButton from '../components/SlantButton.astro';
 import { SITE } from '../data/site';
-import productsFlat from '../data/products.json';
+import productsData from '../data/products.json';
 
-// カテゴリ順を定義してグループ化
-const categoryOrder = ['研削材料', 'セラミックス原材料', '工業用副資材'];
-
-type Product = typeof productsFlat[number];
-
-const grouped = categoryOrder.map((cat) => ({
-  category: cat,
-  items: productsFlat.filter((p: Product) => p.category === cat),
-}));
+const categories = [
+  { id: 'abrasive',   label: '01 研削材料・研磨材',    value: '研削材料'          },
+  { id: 'ceramics',   label: '02 セラミックス原材料',   value: 'セラミックス原材料' },
+  { id: 'industrial', label: '03 工業用副資材',         value: '工業用副資材'       },
+];
 ---
 
 <Layout title="製品一覧" description={`${SITE.name}が取り扱う研磨材・工業材料の製品一覧です。`}>
 
   <!-- ページヘッダー -->
-  <section class="bg-dark pt-32 pb-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <p class="text-primary text-xs tracking-[0.3em] uppercase mb-3">Products</p>
-      <h1 class="font-serif text-off-white text-4xl md:text-5xl">製品一覧</h1>
+  <section class="bg-dark py-20 px-6 md:px-16">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-primary text-sm tracking-widest">Products</p>
+      <h1 class="font-serif text-white text-4xl md:text-5xl mt-2">製品一覧</h1>
+      <p class="text-white text-sm opacity-60 mt-4">
+        <a href="/" class="hover:opacity-100 transition-opacity">TOP</a>
+        <span class="mx-2">›</span>
+        製品一覧
+      </p>
     </div>
   </section>
 
-  <!-- カテゴリ別製品 -->
-  {grouped.map((group, idx) => (
-    <section
-      id={group.category}
-      class:list={['py-20', idx % 2 === 0 ? 'bg-off-white' : 'bg-white']}
-    >
-      <div class="max-w-6xl mx-auto px-6">
-        <!-- カテゴリ見出し -->
-        <div class="flex items-center gap-6 mb-12">
-          <div class="w-1 h-12 bg-primary shrink-0"></div>
-          <div>
-            <p class="text-primary text-xs tracking-[0.3em] uppercase mb-1">
-              {String(idx + 1).padStart(2, '0')}
-            </p>
-            <h2 class="font-serif text-2xl md:text-3xl text-dark">{group.category}</h2>
-          </div>
-        </div>
+  <!-- カテゴリアンカーナビ -->
+  <div class="bg-off-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-16 flex overflow-x-auto gap-0">
+      {categories.map(({ id, label }) => (
+        <a
+          href={`#${id}`}
+          class="px-6 py-4 text-sm font-medium text-dark/60 whitespace-nowrap border-b-2 border-transparent hover:border-primary hover:text-primary transition-colors duration-200"
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </div>
 
-        <!-- 製品カード -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {group.items.map((item) => (
-            <div id={item.id} class="bg-white p-6 border border-dark/10 hover:border-primary transition-colors duration-200">
-              <p class="text-primary text-xs font-mono mb-2">{item.code}</p>
-              <h3 class="font-serif text-dark text-base font-semibold mb-3 leading-snug">
-                {item.name}
-              </h3>
-              <p class="text-dark/65 text-sm leading-relaxed mb-4">
-                {item.description}
-              </p>
-              <!-- スペック -->
-              <div class="pt-3 border-t border-dark/10 space-y-1">
-                {item.specs.granularity && (
-                  <p class="text-xs text-dark/50">
-                    <span class="text-dark/40">粒度：</span>{item.specs.granularity}
-                  </p>
-                )}
-                {item.specs.bulk_density && (
-                  <p class="text-xs text-dark/50">
-                    <span class="text-dark/40">嵩比重：</span>{item.specs.bulk_density}
-                  </p>
-                )}
-                {item.specs.notes && (
-                  <p class="text-xs text-primary/80">{item.specs.notes}</p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  ))}
+  <!-- 製品リスト -->
+  <div class="bg-light">
+    {categories.map((category) => (
+      <section id={category.id} class="py-16 px-6 md:px-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-2xl border-b-2 border-primary pb-3 mb-10">
+            {category.label}
+          </h2>
 
-  <!-- お問い合わせ誘導 -->
-  <section class="py-20 bg-dark">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="font-serif text-off-white text-2xl md:text-3xl mb-4">
-        製品に関するお問い合わせ
+          {productsData
+            .filter((p) => p.category === category.value)
+            .map((product) => (
+              <article class="flex flex-col md:flex-row gap-8 py-12 border-b border-gray-200">
+
+                <!-- 左: 画像エリア -->
+                <div class="md:w-[280px] md:shrink-0">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    class="w-full aspect-[4/3] object-cover"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='/images/products/placeholder.jpg'"
+                  />
+                </div>
+
+                <!-- 右: テキスト + スペック -->
+                <div class="flex-1">
+                  <h3 class="font-serif text-xl border-b border-gray-200 pb-3 mb-4">
+                    ■ {product.name}　[{product.code}]
+                  </h3>
+
+                  <p class="text-sm text-gray-600 mb-6">{product.description}</p>
+
+                  <dl class="text-sm space-y-3">
+
+                    <!-- 粒度 -->
+                    {product.specs.granularity && (
+                      <div class="flex gap-4 border-b border-gray-100 pb-3">
+                        <dt class="font-semibold text-gray-500 min-w-[80px] shrink-0">粒度</dt>
+                        <dd>{product.specs.granularity}</dd>
+                      </div>
+                    )}
+
+                    <!-- 分析値 -->
+                    <div class="border-b border-gray-100 pb-3">
+                      <dt class="font-semibold text-gray-500 mb-2">分析値</dt>
+                      <dd>
+                        <dl class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1">
+                          {product.specs.analysis.map((item) => (
+                            <div class="flex gap-2">
+                              <dt class="text-gray-500">{item.label}</dt>
+                              <dd>{item.value}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </dd>
+                    </div>
+
+                    <!-- 嵩比重 -->
+                    {product.specs.bulk_density && (
+                      <div class="flex gap-4 border-b border-gray-100 pb-3">
+                        <dt class="font-semibold text-gray-500 min-w-[80px] shrink-0">嵩比重</dt>
+                        <dd>{product.specs.bulk_density}</dd>
+                      </div>
+                    )}
+
+                    <!-- 補足 -->
+                    {product.specs.notes && (
+                      <p class="text-xs text-gray-400 mt-2">{product.specs.notes}</p>
+                    )}
+
+                  </dl>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- Contact CTA -->
+  <section class="bg-off-white py-20 px-6 md:px-16">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-serif text-2xl md:text-3xl text-dark">
+        お問い合わせはお電話・メールにて承ります
       </h2>
-      <p class="text-off-white/60 mb-10 leading-relaxed">
-        仕様・価格・納期など、お気軽にお問い合わせください。
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a
-          href={SITE.telHref}
-          class="bg-primary hover:bg-primary-dark text-white text-sm tracking-wider px-10 py-4 transition-colors"
-        >
-          電話: {SITE.tel}
-        </a>
-        <a
-          href={`mailto:${SITE.email}`}
-          class="border border-off-white/30 hover:border-off-white/60 text-off-white text-sm tracking-wider px-10 py-4 transition-colors"
-        >
-          {SITE.email}
-        </a>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <SlantButton text="お電話でのお問い合わせ" href={SITE.telHref} />
+        <SlantButton text="メールでのお問い合わせ" href={`mailto:${SITE.email}`} />
       </div>
     </div>
   </section>
