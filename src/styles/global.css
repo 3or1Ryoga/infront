@@ -11,6 +11,16 @@
   --font-sans: "Noto Sans JP", sans-serif;
 }
 
+/* SlantButton: 赤レイヤーのワイプアニメーション */
+.slant-red {
+  clip-path: polygon(0 0, 82% 0, 76% 100%, 0 100%);
+  transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slant-button:hover .slant-red {
+  clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+}
+
 @layer base {
   html {
     @apply font-sans text-dark scroll-smooth;

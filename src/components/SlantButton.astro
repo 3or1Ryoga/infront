@@ -3,24 +3,34 @@ interface Props {
   text:      string;
   href:      string;
   external?: boolean;
+  variant?:  'default' | 'onDark';
 }
 
-const { text, href, external = false } = Astro.props;
+const { text, href, external = false, variant = 'default' } = Astro.props;
+const isOnDark = variant === 'onDark';
 ---
 
 <a
   href={href}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
-  class="group relative inline-flex items-center justify-center overflow-hidden bg-primary hover:bg-dark transition-colors duration-300 px-8 py-3 min-w-[200px]"
+  class:list={[
+    'slant-button group relative inline-flex items-center justify-center overflow-hidden px-8 py-3 min-w-[200px]',
+    isOnDark ? 'bg-white' : 'bg-dark',
+  ]}
 >
-  <!-- 右側の斜め墨色ブロック -->
+  <!-- 赤レイヤー: clip-path で左80%を覆い、ホバー時に左へワイプして消える -->
+  <span class="slant-red absolute inset-0 bg-primary" aria-hidden="true"></span>
+
+  <!-- テキスト: onDark はホバー後に白背景になるため dark に切り替え -->
   <span
-    class="absolute inset-0 bg-dark [clip-path:polygon(78%_0,100%_0,100%_100%,70%_100%)] group-hover:opacity-0 transition-opacity duration-300"
-    aria-hidden="true"
-  ></span>
-  <!-- テキスト -->
-  <span class="relative z-10 text-white font-semibold text-sm tracking-wider">
+    class:list={[
+      'relative z-10 font-semibold text-sm tracking-wider transition-colors duration-300',
+      isOnDark
+        ? 'text-white group-hover:text-dark'
+        : 'text-white',
+    ]}
+  >
     {text}
   </span>
 </a>
