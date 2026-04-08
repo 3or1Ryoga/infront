@@ -1,0 +1,63 @@
+---
+import { SITE } from '../data/site';
+
+const nav = [
+  { label: 'TOP',      href: '/'         },
+  { label: '会社概要',  href: '/company'  },
+  { label: '製品一覧',  href: '/products' },
+];
+---
+
+<footer class="bg-dark text-off-white/70">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+      <!-- 会社情報 -->
+      <div class="md:col-span-2">
+        <p class="font-serif text-off-white text-lg font-semibold mb-1">{SITE.name}</p>
+        <p class="text-xs tracking-widest uppercase text-off-white/40 mb-6">{SITE.nameEn}</p>
+        <dl class="space-y-2 text-sm">
+          <div class="flex gap-4">
+            <dt class="w-12 shrink-0 text-off-white/40">所在地</dt>
+            <dd>{SITE.addressFull}</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="w-12 shrink-0 text-off-white/40">電話</dt>
+            <dd>
+              <a href={`tel:${SITE.tel}`} class="hover:text-off-white transition-colors">
+                {SITE.tel}
+              </a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="w-12 shrink-0 text-off-white/40">メール</dt>
+            <dd>
+              <a href={`mailto:${SITE.email}`} class="hover:text-off-white transition-colors">
+                {SITE.email}
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- ナビゲーション -->
+      <div>
+        <p class="text-xs tracking-widest uppercase text-off-white/40 mb-6">Navigation</p>
+        <nav class="flex flex-col gap-3">
+          {nav.map(({ label, href }) => (
+            <a
+              href={href}
+              class="text-sm hover:text-off-white transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-off-white/10 text-xs text-off-white/30">
+      {SITE.copyright}
+    </div>
+  </div>
+</footer>

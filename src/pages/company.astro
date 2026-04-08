@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site';
+
+const companyInfo = [
+  { label: '商号',         value: SITE.name },
+  { label: '英語表記',     value: SITE.nameEn },
+  { label: '事業内容',     value: SITE.industry },
+  { label: '所在地',       value: SITE.addressFull },
+  { label: '電話番号',     value: SITE.tel },
+  { label: 'メールアドレス', value: SITE.email },
+];
+
+const history = [
+  { year: '----年', event: '株式会社インフロント興産 設立' },
+  { year: '----年', event: '研磨材事業を本格開始' },
+  { year: '----年', event: '工業材料部門を新設' },
+  { year: '----年', event: '耐火材料・溶射材料の取り扱いを開始' },
+  { year: '----年', event: '現住所へ移転' },
+];
+---
+
+<Layout title="会社概要" description={`${SITE.name}の会社概要・沿革についてご紹介します。`}>
+
+  <!-- ページヘッダー -->
+  <section class="bg-dark pt-32 pb-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-primary text-xs tracking-[0.3em] uppercase mb-3">About Us</p>
+      <h1 class="font-serif text-off-white text-4xl md:text-5xl">会社概要</h1>
+    </div>
+  </section>
+
+  <!-- 会社情報テーブル -->
+  <section class="py-20 bg-off-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-serif text-2xl text-dark mb-10">会社情報</h2>
+      <dl class="divide-y divide-dark/10">
+        {companyInfo.map(({ label, value }) => (
+          <div class="grid grid-cols-1 sm:grid-cols-[10rem_1fr] py-5 gap-2">
+            <dt class="text-sm text-dark/50 font-medium">{label}</dt>
+            <dd class="text-dark">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 沿革 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-serif text-2xl text-dark mb-10">会社沿革</h2>
+      <div class="relative">
+        <!-- タイムラインの縦線 -->
+        <div class="absolute left-[5.5rem] top-0 bottom-0 w-px bg-dark/10 hidden sm:block"></div>
+
+        <dl class="space-y-0 divide-y divide-dark/10">
+          {history.map(({ year, event }) => (
+            <div class="grid grid-cols-1 sm:grid-cols-[10rem_1fr] py-6 gap-2 relative">
+              <dt class="text-sm text-dark/50 font-mono">{year}</dt>
+              <dd class="text-dark relative sm:pl-6">
+                <span class="absolute left-[-0.4rem] top-1.5 w-2 h-2 rounded-full bg-primary hidden sm:block"></span>
+                {event}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section class="py-20 bg-off-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-serif text-2xl text-dark mb-10">所在地</h2>
+      <div class="bg-white p-8 border-l-4 border-primary">
+        <p class="font-serif text-dark text-lg font-semibold mb-2">{SITE.name}</p>
+        <p class="text-dark/70 mb-6">{SITE.addressFull}</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href={`tel:${SITE.tel}`}
+            class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm px-6 py-3 transition-colors"
+          >
+            電話: {SITE.tel}
+          </a>
+          <a
+            href={`mailto:${SITE.email}`}
+            class="inline-flex items-center gap-2 border border-dark hover:bg-dark hover:text-off-white text-dark text-sm px-6 py-3 transition-colors"
+          >
+            {SITE.email}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

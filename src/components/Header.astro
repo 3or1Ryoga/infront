@@ -1,0 +1,104 @@
+---
+import { SITE } from '../data/site';
+
+const nav = [
+  { label: 'TOP',      href: '/'         },
+  { label: '会社概要',  href: '/company'  },
+  { label: '製品一覧',  href: '/products' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-dark/95 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <!-- ロゴ -->
+    <a href="/" class="flex flex-col leading-tight group">
+      <span class="text-off-white font-serif text-base font-semibold tracking-wide group-hover:text-primary transition-colors">
+        {SITE.name}
+      </span>
+      <span class="text-off-white/50 text-[10px] tracking-widest uppercase">
+        {SITE.nameEn}
+      </span>
+    </a>
+
+    <!-- デスクトップナビ -->
+    <nav class="hidden md:flex items-center gap-8">
+      {nav.map(({ label, href }) => (
+        <a
+          href={href}
+          class:list={[
+            'text-sm tracking-wider transition-colors duration-200',
+            currentPath === href
+              ? 'text-primary font-medium'
+              : 'text-off-white/80 hover:text-off-white',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href={`tel:${SITE.tel}`}
+        class="ml-4 bg-primary hover:bg-primary-dark text-white text-sm px-4 py-2 transition-colors duration-200"
+      >
+        お問い合わせ
+      </a>
+    </nav>
+
+    <!-- モバイルメニューボタン -->
+    <button
+      id="menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+    >
+      <span class="block w-6 h-0.5 bg-off-white transition-all" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-off-white transition-all" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-off-white transition-all" id="bar3"></span>
+    </button>
+  </div>
+
+  <!-- モバイルメニュー -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-dark border-t border-off-white/10"
+  >
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+      {nav.map(({ label, href }) => (
+        <a
+          href={href}
+          class:list={[
+            'text-sm tracking-wider py-2 border-b border-off-white/10',
+            currentPath === href ? 'text-primary' : 'text-off-white/80',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+      <a
+        href={`tel:${SITE.tel}`}
+        class="mt-2 bg-primary text-white text-sm text-center px-4 py-3"
+      >
+        お問い合わせ（電話）
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const bar1 = document.getElementById('bar1')!;
+  const bar2 = document.getElementById('bar2')!;
+  const bar3 = document.getElementById('bar3')!;
+
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!open));
+    bar1.classList.toggle('rotate-45');
+    bar1.classList.toggle('translate-y-2');
+    bar2.classList.toggle('opacity-0');
+    bar3.classList.toggle('-rotate-45');
+    bar3.classList.toggle('-translate-y-2');
+  });
+</script>

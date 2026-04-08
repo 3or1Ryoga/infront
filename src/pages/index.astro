@@ -1,17 +1,168 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site';
+import products from '../data/products.json';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- ==============================
+       Hero
+  ============================== -->
+  <section class="relative min-h-screen flex items-center bg-dark overflow-hidden">
+    <!-- 背景装飾 -->
+    <div class="absolute inset-0 bg-gradient-to-br from-dark via-dark to-[#2a1010]"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16">
+      <p class="text-primary text-xs tracking-[0.3em] uppercase mb-6">
+        Abrasives &amp; Industrial Materials
+      </p>
+      <h1 class="text-off-white font-serif text-4xl md:text-6xl leading-tight mb-8">
+        素材の力で、<br />
+        ものづくりを支える。
+      </h1>
+      <p class="text-off-white/60 text-base md:text-lg max-w-xl leading-relaxed mb-12">
+        {SITE.name}は、研磨剤・工業材料の専門商社として、<br class="hidden md:block" />
+        お客様の製造現場に最適な素材をご提供します。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="/products"
+          class="bg-primary hover:bg-primary-dark text-white text-sm tracking-wider px-8 py-4 transition-colors duration-200 text-center"
+        >
+          製品一覧を見る
+        </a>
+        <a
+          href={`tel:${SITE.tel}`}
+          class="border border-off-white/30 hover:border-off-white/60 text-off-white text-sm tracking-wider px-8 py-4 transition-colors duration-200 text-center"
+        >
+          お電話でのお問い合わせ
+        </a>
+      </div>
+    </div>
+
+    <!-- スクロールインジケーター -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <span class="text-off-white/30 text-[10px] tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-off-white/30 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       About
+  ============================== -->
+  <section class="py-24 bg-off-white" id="about">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-primary text-xs tracking-[0.3em] uppercase mb-4">About Us</p>
+          <h2 class="font-serif text-3xl md:text-4xl text-dark leading-snug mb-6">
+            研磨剤・工業材料の<br />専門商社として
+          </h2>
+          <p class="text-dark/70 leading-relaxed mb-4">
+            {SITE.name}は、研磨材・ブラスト材・耐火材料・溶射材料など、
+            製造業に欠かせない工業材料を幅広く取り扱う専門商社です。
+          </p>
+          <p class="text-dark/70 leading-relaxed mb-8">
+            長年にわたり蓄積した素材知識と仕入れ力を活かし、
+            お客様の用途に最適な材料を安定的にご提供してまいります。
+          </p>
+          <a href="/company" class="inline-flex items-center gap-2 text-primary text-sm tracking-wider hover:gap-3 transition-all duration-200">
+            会社概要を見る
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- 特長グリッド -->
+        <div class="grid grid-cols-2 gap-4">
+          {[
+            { num: '01', label: '豊富な品揃え',    desc: '研磨材から耐火材料まで幅広く対応' },
+            { num: '02', label: '安定供給',         desc: '国内外の信頼あるメーカーと連携' },
+            { num: '03', label: '技術サポート',     desc: '用途に合わせた材料選定をご支援' },
+            { num: '04', label: '迅速な対応',       desc: '小ロットから大ロットまで柔軟に' },
+          ].map(({ num, label, desc }) => (
+            <div class="bg-white p-6 border-l-2 border-primary">
+              <p class="text-primary text-xs font-mono mb-2">{num}</p>
+              <p class="font-serif text-dark font-semibold mb-1">{label}</p>
+              <p class="text-dark/60 text-xs leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       Products（抜粋）
+  ============================== -->
+  <section class="py-24 bg-white" id="products">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase mb-4">Products</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-dark">取り扱い製品</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((cat) => (
+          <a
+            href="/products"
+            class="group bg-off-white hover:bg-dark transition-colors duration-300 p-8 flex flex-col gap-4"
+          >
+            <div class="w-10 h-0.5 bg-primary group-hover:w-16 transition-all duration-300"></div>
+            <h3 class="font-serif text-dark group-hover:text-off-white text-lg transition-colors duration-300">
+              {cat.category}
+            </h3>
+            <p class="text-dark/60 group-hover:text-off-white/60 text-sm leading-relaxed transition-colors duration-300">
+              {cat.items[0].description.slice(0, 40)}…
+            </p>
+            <span class="mt-auto text-primary text-xs tracking-wider group-hover:text-primary transition-colors">
+              詳細を見る →
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/products"
+          class="inline-block border border-dark hover:bg-dark hover:text-off-white text-dark text-sm tracking-wider px-10 py-4 transition-colors duration-200"
+        >
+          製品一覧をすべて見る
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       Contact
+  ============================== -->
+  <section class="py-24 bg-dark" id="contact">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-primary text-xs tracking-[0.3em] uppercase mb-4">Contact</p>
+      <h2 class="font-serif text-off-white text-3xl md:text-4xl mb-6">お問い合わせ</h2>
+      <p class="text-off-white/60 mb-12 max-w-lg mx-auto leading-relaxed">
+        製品に関するご質問・お見積もりのご依頼など、<br class="hidden md:block" />
+        お気軽にお問い合わせください。
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a
+          href={`tel:${SITE.tel}`}
+          class="flex flex-col items-center gap-2 bg-primary hover:bg-primary-dark text-white px-12 py-6 transition-colors duration-200"
+        >
+          <span class="text-xs tracking-widest uppercase opacity-70">Phone</span>
+          <span class="font-serif text-2xl tracking-wider">{SITE.tel}</span>
+          <span class="text-xs opacity-70">電話でのお問い合わせ</span>
+        </a>
+
+        <a
+          href={`mailto:${SITE.email}`}
+          class="flex flex-col items-center gap-2 border border-off-white/20 hover:border-off-white/50 text-off-white px-12 py-6 transition-colors duration-200"
+        >
+          <span class="text-xs tracking-widest uppercase opacity-70">Email</span>
+          <span class="text-base tracking-wide">{SITE.email}</span>
+          <span class="text-xs opacity-70">メールでのお問い合わせ</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
