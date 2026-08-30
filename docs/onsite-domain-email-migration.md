@@ -158,11 +158,11 @@ eo側が所有するドメインの旧アドレスは、独自ドメインへ「
 
 ### Web
 
-- [ ] `https://infront-kohsan.co.jp` が開く
-- [ ] `https://www.infront-kohsan.co.jp` が開く、または正規URLへ転送される
-- [ ] HTTPS警告がない
+- [x] `https://infront-kohsan.co.jp` が開く
+- [x] `https://www.infront-kohsan.co.jp` が開く、または正規URLへ転送される
+- [x] HTTPS警告がない
 - [ ] PCとスマートフォンで表示できる
-- [ ] Vercelの本番デプロイが正しいGitブランチと連携している
+- [x] Vercelの本番デプロイが正しいGitブランチと連携している
 
 ### メール
 
@@ -210,7 +210,7 @@ DNSの反映には時間差があるため、変更を連続して重ねない�
 | Microsoft 365テナント管理責任者 | 未確認 |
 | メールボックス一覧の保管先 | 未定 |
 | MX切り替え日時 | 未実施 |
-| Web確認結果 | Vercelへapex/www追加済み。DNS反映・HTTPS確認待ち |
+| Web確認結果 | 2026-08-30確認済み。apexはHTTPSでwwwへ308転送、wwwはHTTPS 200、Vercelは両方Valid Configuration |
 | メール確認結果 | 未実施 |
 | eo維持期限 | 未定 |
 | 残課題 | DNS伝播後のWeb確認、会社管理アカウントへの移管、メール利用者・Microsoft 365契約のヒアリング、MX切り替え |
@@ -224,7 +224,7 @@ DNSの反映には時間差があるため、変更を連続して重ねない�
 - 変更前DNS: 登録済みレコードなし。ネームサーバーは accidental rental server の `ns-rs1.gmoserver.jp` / `ns-rs2.gmoserver.jp`
 - お名前.comレンタルサーバー: 誤契約として解約受付済み（解約日 2026-09-30）
 - メール用MX/TXT/CNAME: 未設定。Microsoft 365とメールボックスが確定するまで変更しない
-- 旧eoメール: `infront-kohsan@leto.eonet.ne.jp` を維持
+- 旧eoメール: `infront-kohsan@leto.eonet.ne.jp` を維持。独自ドメインのメール完成まではWebサイトの問い合わせ先にも使用
 
 ## 10. 公式資料
 
