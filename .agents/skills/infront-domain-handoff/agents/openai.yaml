@@ -1,0 +1,4 @@
+interface:
+  display_name: "インフロント興産 ドメイン納品"
+  short_description: "現地でドメイン・Vercel・法人メールを安全に設定"
+  default_prompt: "Use $infront-domain-handoff to guide today’s onsite domain, Vercel, and Microsoft 365 email handoff."
