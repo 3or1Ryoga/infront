@@ -1,6 +1,5 @@
 export const SITE = {
   name:      '株式会社インフロント興産',
-  nameEn:    'INFRONT KOSAN Co., Ltd.',
   tel:       '00-0000-0000',
   telHref:   'tel:00-0000-0000',
   email:     'info@infront-kosan.co.jp',

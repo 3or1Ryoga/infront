@@ -9,19 +9,19 @@ const productCategories = [
     num: '01',
     en:  'Abrasive Materials',
     ja:  '研削材料・研磨材',
-    href: '/products#研削材料',
+    href: '/products#abrasive',
   },
   {
     num: '02',
     en:  'Ceramics Raw Materials',
     ja:  'セラミックス原材料',
-    href: '/products#セラミックス原材料',
+    href: '/products#ceramics',
   },
   {
     num: '03',
     en:  'Industrial Sub-Materials',
     ja:  '工業用副資材',
-    href: '/products#工業用副資材',
+    href: '/products#industrial',
   },
 ];
 ---
@@ -30,8 +30,14 @@ const productCategories = [
   <!-- ==============================
        Section 1: Hero
   ============================== -->
-  <section class="min-h-screen flex items-center bg-dark">
-    <div class="max-w-6xl mx-auto px-6 md:px-16 py-32">
+  <section class="hero min-h-screen flex items-center bg-dark relative overflow-hidden">
+    <div class="hero-images absolute inset-0" aria-hidden="true">
+      <img class="hero-image hero-image-1" src="/images/hero/hero-01.jpg" alt="" fetchpriority="high" />
+      <img class="hero-image hero-image-2" src="/images/hero/hero-02.jpg" alt="" loading="lazy" />
+      <img class="hero-image hero-image-3" src="/images/hero/hero-03.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="hero-shade absolute inset-0" aria-hidden="true"></div>
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-16 py-32">
       <p class="text-primary text-sm tracking-widest uppercase">About us</p>
       <h1 class="font-serif text-white text-4xl md:text-6xl leading-tight mt-4">
         独自の技術と品質で、<br />
@@ -45,6 +51,46 @@ const productCategories = [
       </div>
     </div>
   </section>
+
+  <style>
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 64% center;
+      opacity: 0;
+      animation: hero-crossfade 12s infinite;
+      animation-fill-mode: backwards;
+    }
+
+    .hero-image-2 { animation-delay: 4s; }
+    .hero-image-3 { animation-delay: 8s; }
+
+    .hero-shade {
+      background: linear-gradient(90deg, #1a1a1a 0%, #1a1a1a 38%, rgba(26, 26, 26, 0.9) 52%, rgba(26, 26, 26, 0.25) 76%, rgba(26, 26, 26, 0.08) 100%);
+    }
+
+    @keyframes hero-crossfade {
+      0% { opacity: 0; transform: scale(1.025); }
+      6% { opacity: 1; }
+      28% { opacity: 1; }
+      34%, 100% { opacity: 0; transform: scale(1); }
+    }
+
+    @media (max-width: 767px) {
+      .hero-image { object-position: 62% center; }
+      .hero-shade {
+        background: linear-gradient(90deg, rgba(26, 26, 26, 0.97) 0%, rgba(26, 26, 26, 0.88) 48%, rgba(26, 26, 26, 0.55) 100%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-image { animation: none; }
+      .hero-image-1 { opacity: 1; }
+    }
+  </style>
 
   <!-- ==============================
        Section 2: About

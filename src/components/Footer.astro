@@ -16,8 +16,7 @@ const nav = [
 
       <!-- 左: 社名 + ナビリンク -->
       <div>
-        <p class="font-serif text-lg font-semibold mb-1">{SITE.name}</p>
-        <p class="text-white/40 text-xs tracking-widest uppercase mb-6">{SITE.nameEn}</p>
+        <p class="font-serif text-lg font-semibold mb-6">{SITE.name}</p>
         <nav class="flex flex-col gap-3">
           {nav.map(({ label, href }) => (
             <a href={href} class="text-sm text-white/70 hover:text-white transition-colors">
