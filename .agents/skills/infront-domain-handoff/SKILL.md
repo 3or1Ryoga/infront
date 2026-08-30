@@ -9,7 +9,7 @@ Use [the onsite runbook](../../../docs/onsite-domain-email-migration.md) as the 
 
 ## Intended outcome
 
-- Primary candidate: `infront-kosan.co.jp`, subject to final registrar availability and client approval.
+- Acquired primary domain: `infront-kohsan.co.jp`.
 - Website: apex domain and `www` served by the existing Vercel project.
 - Email: Microsoft 365 / Exchange Online using the company domain in Outlook.
 - Legacy eo mail remains available during a transition period.

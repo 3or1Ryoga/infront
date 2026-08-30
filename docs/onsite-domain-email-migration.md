@@ -7,7 +7,7 @@
 
 | 項目 | 推奨 |
 |---|---|
-| 主ドメイン | `infront-kosan.co.jp` |
+| 主ドメイン | `infront-kohsan.co.jp`（取得済み） |
 | 予備候補 | `infrontindustries.co.jp` / `infront.industries` |
 | Web | 既存のVercelプロジェクト |
 | メール | Microsoft 365 / Exchange Online |
@@ -15,7 +15,7 @@
 | 旧メール | eoメールを移行期間中も維持 |
 | ドメイン名義 | 株式会社インフロント興産 |
 
-`infront.industories` は `industries` の綴りが誤っており、候補にしない。`infront.industries` は取得可能な形式だが、口頭で伝えにくいため主メールには `infront-kosan.co.jp` を優先する。
+`infront.industories` は `industries` の綴りが誤っており、候補にしない。最終的に社名表記に合わせて `infront-kohsan.co.jp` を採用した。
 
 2026-08-30の事前照会では上記3候補は未登録に見えたが、空き状況は変動する。購入画面で最終確認し、会社の承認を得てから取得する。
 
@@ -31,7 +31,7 @@
 
 ## 3. 現地へ行く前にできること
 
-- [ ] `infront-kosan.co.jp` を第一候補として社名・表記を確認する
+- [x] `infront-kohsan.co.jp` を社名・表記と照合して取得する
 - [ ] レジストラ候補と概算費用を比較する
 - [ ] Microsoft 365のプラン候補を整理する
 - [ ] 希望メールアドレス一覧の記入シートを用意する
@@ -81,7 +81,7 @@ MX変更前に空欄をすべて確定する。
 
 | 表示名 | 新アドレス | 種別 | 利用者 | 旧eoアドレス | 過去メール移行 | 端末 |
 |---|---|---|---|---|---|---|
-| 代表窓口 | `info@infront-kosan.co.jp` | 共有/個人 未定 | 未定 | 未確認 | 未定 | 未確認 |
+| 代表窓口 | `info@infront-kohsan.co.jp` | 共有/個人 未定 | 未定 | `infront-kohsan@leto.eonet.ne.jp` | 未定 | 未確認 |
 |  |  |  |  |  |  |  |
 
 個人が複数人で同じパスワードを共有しない。複数人で使う代表窓口は、Microsoft 365の共有メールボックスを検討する。
@@ -112,7 +112,7 @@ MX変更前に空欄をすべて確定する。
 ### C. WebをVercelへ接続
 
 1. 本リポジトリを公開している正しいVercelプロジェクトか確認する。
-2. Vercelへ `infront-kosan.co.jp` と `www.infront-kosan.co.jp` を追加する。
+2. Vercelへ `infront-kohsan.co.jp` と `www.infront-kohsan.co.jp` を追加する。
 3. Vercelが提示するAまたはCNAMEレコードをDNSへ追加する。
 4. apexと`www`のどちらを正規URLにするか決め、もう一方をリダイレクトする。
 5. HTTPS証明書が有効になるまで確認する。
@@ -158,11 +158,11 @@ eo側が所有するドメインの旧アドレスは、独自ドメインへ「
 
 ### Web
 
-- [ ] `https://infront-kosan.co.jp` が開く
-- [ ] `https://www.infront-kosan.co.jp` が開く、または正規URLへ転送される
-- [ ] HTTPS警告がない
+- [x] `https://infront-kohsan.co.jp` が開く
+- [x] `https://www.infront-kohsan.co.jp` が開く、または正規URLへ転送される
+- [x] HTTPS警告がない
 - [ ] PCとスマートフォンで表示できる
-- [ ] Vercelの本番デプロイが正しいGitブランチと連携している
+- [x] Vercelの本番デプロイが正しいGitブランチと連携している
 
 ### メール
 
@@ -201,19 +201,30 @@ DNSの反映には時間差があるため、変更を連続して重ねない�
 
 | 項目 | 記録 |
 |---|---|
-| 取得ドメイン | 未実施 |
-| レジストラ | 未定 |
+| 取得ドメイン | `infront-kohsan.co.jp`（2026-08-30取得） |
+| レジストラ | お名前.com |
 | ドメイン名義 | 未確認 |
 | 更新責任者・更新月 | 未確認 |
-| DNS管理先 | 未定 |
-| Vercelプロジェクト所有者 | 未確認 |
+| DNS管理先 | お名前.com（`01.dnsv.jp`〜`04.dnsv.jp`へ変更受付済み） |
+| Vercelプロジェクト所有者 | Ryoga SakaiのVercelアカウント（会社管理への移管が残課題） |
 | Microsoft 365テナント管理責任者 | 未確認 |
 | メールボックス一覧の保管先 | 未定 |
 | MX切り替え日時 | 未実施 |
-| Web確認結果 | 未実施 |
+| Web確認結果 | 2026-08-30確認済み。apexはHTTPSでwwwへ308転送、wwwはHTTPS 200、Vercelは両方Valid Configuration |
 | メール確認結果 | 未実施 |
 | eo維持期限 | 未定 |
-| 残課題 | 現地ヒアリング |
+| 残課題 | DNS伝播後のWeb確認、会社管理アカウントへの移管、メール利用者・Microsoft 365契約のヒアリング、MX切り替え |
+
+### 2026-08-30 Web接続作業記録
+
+- Vercelプロジェクト: `ryoga-sakais-projects/infront`
+- 本番ブランチ: `main`（マージコミット `fd57ca1`）
+- 正規URL: `www.infront-kohsan.co.jp`。apexは`www`へ308リダイレクトする設定
+- Web用DNS: apex A `216.198.79.1`、`www` CNAME `4de905475b90600a.vercel-dns-017.com`
+- 変更前DNS: 登録済みレコードなし。ネームサーバーは accidental rental server の `ns-rs1.gmoserver.jp` / `ns-rs2.gmoserver.jp`
+- お名前.comレンタルサーバー: 誤契約として解約受付済み（解約日 2026-09-30）
+- メール用MX/TXT/CNAME: 未設定。Microsoft 365とメールボックスが確定するまで変更しない
+- 旧eoメール: `infront-kohsan@leto.eonet.ne.jp` を維持。独自ドメインのメール完成まではWebサイトの問い合わせ先にも使用
 
 ## 10. 公式資料
 
